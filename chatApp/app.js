@@ -24,7 +24,7 @@ app.get('/',(req,res,next)=>{
 })
 
 app.post('/data',(req,res,next)=>{
-    let data=usr+": "+req.body.user;
+    let data=usr+": "+req.body.user+" ";
     fs.appendFile('message.txt', data, (err)=>{
         if(err)throw err;
         console.log("msg saved");

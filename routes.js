@@ -20,9 +20,10 @@ const requestHandler=(req,res)=>{
         });
         req.on('end',()=>{
         const parseBody=Buffer.concat(body).toString();
-        const message=parseBody.split('=')[1];
+        const message=parseBody.split('=')[0];
         fs.writeFileSync("message.text" , message);
         });
+        
         res.statusCode=302;
         res.setHeader('Location','/');
         return res.end();
