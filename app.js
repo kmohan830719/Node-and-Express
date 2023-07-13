@@ -8,6 +8,7 @@ const adminRoutes=require('./routers/admin');
 const shopRoutes=require('./routers/shop');
 const contactUsRouter=require('./routers/contact')
 const successMsg=require('./routers/success');
+const errorController = require('./controllers/404error')
 
 app.use(bodyPrser.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname,'public')));
@@ -17,8 +18,6 @@ app.use(shopRoutes);
 app.use(contactUsRouter);
 app.use(successMsg);
 
-app.use((req, res,next)=>{
-    res.status(404).sendFile(path.join(__dirname,'views','404.html'));
-});
+app.use(errorController.get404Error);
 
 app.listen(4000);
